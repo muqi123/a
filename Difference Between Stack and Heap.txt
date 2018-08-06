@@ -1,0 +1,12 @@
+Difference between Stack and Heap
+
+https://www.youtube.com/watch?v=wJ1L2nSIV1s
+
+Difference:
+
+Stack: the temporary variable, delete after the function is done int value = 5;
+Heap: allocate the space for the variable, you need to free it you self. e.g. int* p = new int(5);
+
+New question:
+How to return reference to local variable. 
+https://stackoverflow.com/questions/4643713/c-returning-reference-to-local-variable
