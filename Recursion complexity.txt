@@ -1,0 +1,17 @@
+https://www.youtube.com/watch?v=OQi4n8EKRD8
+recursion:
+1. time complexity 
+2. space complexity, usually logn, recursion use tmp memory, and release it immediately, so usually does not consume extra space
+
+quick sort( partition data, inline move data, ramdon select a pivot, so time complexity is not garnered ):
+time complexity: best: nlogn, worst: n^2, average: nlogn
+space complexity: O(n)
+
+merge sort( partition data, need to copy data, always select the middle one to do the partition )
+time complexity: always nlogn
+space complexity: O(n)
+
+DP:
+
+Time complexity: number of subProblem * complexity of each subproblem
+Space complexity: what need to memorize 
