@@ -25,3 +25,37 @@ Return how many nodes you can reach in at most M moves.
 }
 priority_queue<int, vector<int>, comp>
 */
+
+
+class Solution {
+public:
+    int reachableNodes(vector<vector<int>>& edges, int M, int N) {
+        unordered_map<int, unordered_map<int, int>> g;
+        for( int i = 0; i < edges.size(); i++)
+            g[edges[i][0]][edges[i][1]] = g[edges[i][1]][edges[i][0]] = edges[i][2];
+        priority_queue<pair<int,int>> pq; // {HP, nodeId}
+        unordered_map<int, int> nodeHp; //{nodeId, Hp}
+        pq.push({M,0});
+        while( !pq.empty()){
+            int curNode = pq.top().second;
+            int curHp = pq.top().first;
+            pq.pop();
+            if( nodeHp.count(curNode) ) continue;
+            nodeHp[curNode] = curHp;
+            for( auto it = g[curNode].begin(); it != g[curNode].end();it++)
+            {
+                int nxtNode = it->first;
+                int nxtHp = curHp - it->second - 1;
+                if( nxtHp >= 0 && nodeHp.count( nxtNode ) != 1)
+                    pq.push( { nxtHp, nxtNode});
+            }
+        }
+        int res = nodeHp.size();
+        for( int i = 0; i < edges.size(); i++ ){
+            int left = nodeHp.count(edges[i][0]) ? nodeHp[edges[i][0]] : 0;
+            int right = nodeHp.count(edges[i][1]) ? nodeHp[edges[i][1]] : 0;
+            res += min( left + right, edges[i][2] );
+        }
+        return res;      
+    }
+};
