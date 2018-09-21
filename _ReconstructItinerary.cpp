@@ -20,6 +20,8 @@ Explanation: Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","
 */
 
 //这题是一道变相到postOrderTraversal的题目，用 deque 去remove最前面到元素
+//第二遍做deque可以sort，push_front, push_back, pop_front, pop_back
+//这是一道后序遍历，如果用preorder（先push_back）会不对
 
 class Solution {
 public:
