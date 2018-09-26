@@ -32,3 +32,37 @@ public:
     }
 };
 
+// II
+class Solution {
+public:
+    vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+        vector<vector<int>> graph(numCourses,vector<int>());
+        vector<int> status(numCourses, 0); //0 unvisited, 1 visiting, 2 visited
+        
+        for( auto p : prerequisites)
+            graph[p.first].push_back( p.second);
+        
+        vector<int> res;
+        for( int i = 0; i < numCourses; i++ )
+        {
+            if( !canF( graph, status, res, i ))
+                return vector<int>();
+        }
+        return res;
+    }
+    bool canF( vector<vector<int>>& graph, vector<int>& status, vector<int>& res, int in )
+    {
+        if( status[in] == 2 )
+            return true;
+        if( status[in] == 1 )
+            return false;
+        status[in] = 1;
+        for( auto elem:graph[in])
+            if( !canF( graph, status, res, elem ))
+                return false;
+        res.push_back( in );
+        status[in] = 2;
+        return true;
+    }
+};
+
