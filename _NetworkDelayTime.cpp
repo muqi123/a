@@ -17,7 +17,7 @@ All edges times[i] = (u, v, w) will have 1 <= u, v <= N and 1 <= w <= 100.
 */
 
 
-// Bellman-Ford
+// Bellman-Ford time complexity N*E
 
 class Solution {
 public:
