@@ -42,3 +42,20 @@ public:
         return -1;
     }
 };
+
+class Solution {
+public:
+    int networkDelayTime(vector<vector<int>>& times, int N, int K) {
+        int maxTime = 6000*100;
+        vector<int> res( N + 1, maxTime );
+        res[K] = 0;
+        for( int i = 0; i < N; i++ )
+        {
+            for( auto e : times ){
+                res[e[1]] = min( res[e[1]], res[e[0]] + e[2] );
+            }
+        }
+        int maxNum = *max_element( res.begin() + 1, res.end() );
+        return maxNum == maxTime ? -1 : maxNum;
+    }
+};
