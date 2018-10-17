@@ -71,3 +71,55 @@ public:
 private:
     unordered_map<string, vector<string>> m_word; 
 };
+
+
+
+
+// word break I
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> st( wordDict.begin(), wordDict.end() );
+        s = " " + s ;
+        int n = s.size();
+        unordered_set<int> st1;
+        st1.insert( 0 );
+        
+        for( int l = 1; l < n; l++ )
+            for( auto idx : st1  )
+            {
+                string tmpS = s.substr( idx + 1, l - idx );
+                if( st.count(  tmpS ) )
+                {
+                    st1.insert( l );
+                    break;
+                }
+            }
+        return st1.count( n - 1 ) == 1;
+    }
+};
+
+
+class Solution {
+public:
+    bool wordBreak(string s, vector<string>& wordDict) {
+        unordered_set<string> st( wordDict.begin(), wordDict.end() );
+        return wordBreak( s, st );
+    }
+    
+    bool wordBreak( string s, unordered_set<string>& st ){
+        if( mp.count( s ) ) return mp[s];
+        if( st.count( s ) ) return true;
+        
+        for( int i = 1; i < s.size(); i++ ){
+            string tmp = s.substr( i );
+            if( st.count( tmp ) == 0 ) continue;
+            if( wordBreak( s.substr( 0, i ), st ) )
+                return mp[s] = true;
+        }
+        
+        return mp[s] = false;
+    }
+private:
+    unordered_map< string, bool> mp;
+};
