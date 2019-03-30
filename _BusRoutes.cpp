@@ -8,7 +8,7 @@ We have a list of bus routes. Each routes[i] is a bus route that the i-th bus re
 We start at bus stop S (initially not on a bus), and we want to go to bus stop T. Travelling by buses only, what is the least number of buses we must take to reach our destination? Return -1 if it is not possible.
 */
 
-// 只要记录那一条route被走过了， 不用记录每个bus visited的情况
+// 只要记录那一条route被走过了， 不用记录每个bus visited的情况 test
 
 
 class Solution {
